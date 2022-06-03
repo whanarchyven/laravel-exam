@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlacesTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreatePlacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('places', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->text('description')->nullable(true);
-            $table->boolean('is_repair')->default(0);
-            $table->boolean('is_working')->default(1);
-            $table->softDeletes();
-
+            $table->string('title');
+            $table->text('short_desc');
+            $table->text('desc');
+            $table->unsignedBigInteger('likes')->default(0);
         });
     }
 
@@ -32,6 +30,6 @@ class CreatePlacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('places');
+        Schema::dropIfExists('posts');
     }
 }

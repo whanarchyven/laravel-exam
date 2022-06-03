@@ -11286,3 +11286,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@media screen and (max-width: 479px) {
+    .logo{
+        display: none !important; /* styles for browsers larger than 960px; */
+    }
+}

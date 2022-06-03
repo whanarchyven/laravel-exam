@@ -22,32 +22,18 @@ use App\Http\Controllers\ThingController;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/main','MainController@index')->name('main');
-Route::get('/mythings','MyThingController@index')->name('mythings');
 
+Route::get('/posts','PostController@index')->name('posts.index');
+Route::get('/posts/create','PostController@create')->name('posts.create');
+Route::post('/posts','PostController@store')->name('posts.store');
+Route::get('/posts/{post}','PostController@show')->name('posts.show');
+Route::get('/posts/{post}/edit','PostController@edit')->name('posts.edit');
+Route::patch('/posts/{post}','PostController@update')->name('posts.update');
+Route::delete('/posts/{post}','PostController@destroy')->name('posts.destroy');
+Route::post('/posts/search','PostController@search')->name('posts.search');
 
-Route::get('/things','ThingController@index')->name('things.index');
-Route::get('/things/create','ThingController@create')->name('things.create');
-Route::post('/things','ThingController@store')->name('things.store');
-Route::get('/things/{thing}','ThingController@show')->name('things.show');
-Route::get('/things/{thing}/edit','ThingController@edit')->name('things.edit');
-Route::patch('/things/{thing}','ThingController@update')->name('things.update');
-Route::delete('/things/{thing}','ThingController@destroy')->name('things.destroy');
-Route::post('/things/search','ThingController@search')->name('things.search');
-
-Route::get('/mythings/{thing}/edit','MyThingController@edit')->name('mythings.edit');
-Route::get('/mythings/{thing}','MyThingController@show')->name('mythings.show');
-Route::patch('/mythings/{thing}','MyThingController@update')->name('mythings.update');
-
-Route::get('/places','PlaceController@index')->name('places.index');
-Route::get('/places/create','PlaceController@create')->name('places.create');
-Route::post('/places','PlaceController@store')->name('places.store');
-Route::get('/places/{place}','PlaceController@show')->name('places.show');
-Route::get('/places/{place}/edit','PlaceController@edit')->name('places.edit');
-Route::patch('/places/{place}','PlaceController@update')->name('places.update');
-Route::delete('/places/{place}','PlaceController@destroy')->name('places.destroy');
-Route::post('/places/search','PlaceController@search')->name('places.search');
-
-
+Route::get('/about','PostController@about')->name('posts.about');
+Route::get('/feedback','PostController@feedback')->name('posts.feedback');
 
 
 Auth::routes();

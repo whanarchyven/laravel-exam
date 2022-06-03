@@ -2,27 +2,29 @@
 <!--Директива section с идентификатором, в случае совпадения этого идентификатора и требуемого, подставит содержимое в лейаут-->
 @section('content')
     <div>
-        <h1 class="h-25">Вещи: </h1>
-        <div style="display: flex; flex-wrap: wrap; padding: 30px;border: 2px solid green; border-radius: 15px;margin-bottom: 30px">
-            @foreach($things as $thing)
-                <div class="card" style="width: 18rem;margin-right: 30px;flex: 0 0 30%; margin-top: 30px">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$thing->name}}</h5>
-                        <p class="card-text">{{$thing->description}}</p>
-                        <a href="{{route('things.show',$thing->id)}}" class="card-link">Read More</a>
-                    </div>
-                </div>
-
-            @endforeach
-        </div>
-        <h1 class="h-25">Хранилища: </h1>
-        <div style="display: flex; flex-wrap: wrap; padding: 30px;border: 2px solid green; border-radius: 15px;margin-bottom: 30px">
-            @foreach($places as $place)
-                <div class="card" style="width: 18rem;margin-right: 30px;flex: 0 0 30%; margin-top: 30px">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$place->name}}</h5>
-                        <p class="card-text">{{$place->description}}</p>
-                        <a href="{{route('places.show',$place->id)}}" class="card-link">Read More</a>
+        <h1 class="h-25" style="margin-top:2rem">Новости: </h1>
+        <div class="row mb-2">
+            @foreach($posts as $post)
+{{--                <div class="card" style="width: 18rem;margin-right: 30px;flex: 0 0 100%; margin-top: 30px">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <h5 class="card-title">{{$post->title}}</h5>--}}
+{{--                        <p class="card-text">{{$post->short_desc}}</p>--}}
+{{--                        <a href="{{route('posts.show',$post->id)}}" class="card-link">Читать подробнее</a>--}}
+{{--                    </div>--}}
+{{--                    <div class="card"></div>--}}
+{{--                </div>--}}
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative border-3 border-danger">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <h3 class="mb-0">{{$post->title}}</h3>
+                            <div class="mb-1 text-muted">{{$post->created_at}}</div>
+                            <p class="card-text mb-auto">{{$post->short_desc}}</p>
+                            <a href="{{route('posts.show',$post->id)}}" class="stretched-link">Читать полностью</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block" style="background: url('{{$post->image}}');background-size: cover">
+{{--                            <img src="{{$post->image}}" class="bd-placeholder-img" style="width: 200px; height: 150px; object-fit: cover">--}}
+                            <div style="width: 200px; height: 100px"></div>
+                        </div>
                     </div>
                 </div>
 

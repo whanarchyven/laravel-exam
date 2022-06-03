@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDescriptionsTable extends Migration
+class AddImageToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateDescriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('descriptions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->unsignedBigInteger('thing_id');
-            $table->text('description_text');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('image');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateDescriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('descriptions');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('image');
+        });
     }
 }
