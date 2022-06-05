@@ -35,6 +35,9 @@ Route::post('/posts/search','PostController@search')->name('posts.search');
 Route::get('/about','PostController@about')->name('posts.about');
 Route::get('/feedback','PostController@feedback')->name('posts.feedback');
 
+Route::post('/setlike','LikeController@store')->name('like.set');
+Route::post('/removelike','LikeController@destroy')->name('like.remove');
+Route::get('/viewed/{post}','ViewController@store')->name('view');
 
 Auth::routes();
 

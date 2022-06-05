@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
+use App\Models\View;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -43,7 +45,26 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post.show', compact('post'));
+        $is_liked=0;
+        $views=0;
+        if(View::where([
+                ['user_id', '=', auth()->user()->id],
+                ['post_id', '=', $post->id],
+            ])->first()===null){
+            return redirect(route('view',$post->id));
+        }
+        $views=sizeof(View::where('post_id', '=', $post->id)->get());
+        $likes_count=sizeof(Like::where('post_id', '=', $post->id)->get());
+        if(Like::where([
+                ['user_id', '=', auth()->user()->id],
+                ['post_id', '=', $post->id],
+            ])->first()===null){
+            $is_liked=0;
+        }
+        else{
+            $is_liked=1;
+        }
+        return view('post.show', compact('post','is_liked','likes_count','views'));
     }
 
     public function edit(Post $post)

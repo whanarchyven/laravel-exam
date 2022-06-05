@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function index(){
-        $posts=Post::all();
+        $posts=Post::all()->reverse();
         return view('main',compact('posts'));
     }
 }
